@@ -15,7 +15,7 @@ A data frame with 1,000 rows and 3 columns:
 }
 }
 \source{
-<https://www.who.int/teams/global-tuberculosis-programme/data>
+<https://dnr.nebraska.gov/groundwater>
 }
 \usage{
 wells_ne
