@@ -10,5 +10,5 @@
 #'   \item{latdd}{Latitude}
 #'   ...
 #' }
-#' @source <https://www.who.int/teams/global-tuberculosis-programme/data>
+#' @source <https://dnr.nebraska.gov/groundwater>
 "wells_ne"
