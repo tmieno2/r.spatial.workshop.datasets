@@ -5,13 +5,12 @@
 \alias{wells_ne}
 \title{Wells in Nebraska with geographic coordinates}
 \format{
-## `wells_ne`
+data.frame
 A data frame with 1,000 rows and 3 columns:
 \describe{
   \item{wellid}{Well ID number}
   \item{longdd}{Longitude}
   \item{latdd}{Latitude}
-  ...
 }
 }
 \source{

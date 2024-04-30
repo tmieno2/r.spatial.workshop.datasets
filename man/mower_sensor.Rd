@@ -3,21 +3,20 @@
 \docType{data}
 \name{mower_sensor}
 \alias{mower_sensor}
-\title{Mower sensor data in csv}
+\title{Mower sensor data}
 \format{
-## `mower_sensor`
+`data.frame`
 A data frame with 420 rows and 3 columns:
 \describe{
   \item{LNG}{Longitude}
   \item{LAT}{Latitude}
   \item{ELEV}{Elevation}
-  ...
 }
 }
 \usage{
 mower_sensor
 }
 \description{
-Mower sensor data in csv
+Mower sensor data
 }
 \keyword{datasets}
