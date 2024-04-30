@@ -1,11 +1,12 @@
 Package: r.spatial.workshop.datasets
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Collection of spatial datasets
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Taro Mieno
+Maintainer: Taro Mieno <tmieno2@unl.edu>
+Description: This packages provides spatial datasets in various format. They are used for demonstrating spatial operations and map creation using the spatial pacakges (e.g., sf, terra, tmap).
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 2.10)

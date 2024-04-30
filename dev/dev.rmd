@@ -1,0 +1,18 @@
+```{r}
+library(devtools)
+use_readme_rmd()
+use_mit_license()
+```
+
+# Create data-raw folder to store raw datasets 
+
+```{r}
+usethis::use_data_raw()
+```
+
+
+# Package dependency
+
+```{r}
+usethis::use_package("sf")
+```
