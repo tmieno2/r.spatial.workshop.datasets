@@ -12,3 +12,17 @@
 #' }
 #' @source <https://dnr.nebraska.gov/groundwater>
 "wells_ne"
+
+#' Mower sensor data in csv
+#'
+#' @format ## `mower_sensor`
+#' A data frame with 420 rows and 3 columns:
+#' \describe{
+#'   \item{LNG}{Longitude}
+#'   \item{LAT}{Latitude}
+#'   \item{ELEV}{Elevation}
+#'   ...
+#' }
+#' @source
+"mower_sensor"
+
