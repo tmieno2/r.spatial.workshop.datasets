@@ -16,3 +16,7 @@ usethis::use_data_raw()
 ```{r}
 usethis::use_package("sf")
 ```
+
+```{r}
+devtools::document()
+```

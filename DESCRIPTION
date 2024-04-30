@@ -5,8 +5,9 @@ Version: 0.1.0
 Author: Taro Mieno
 Maintainer: Taro Mieno <tmieno2@unl.edu>
 Description: This packages provides spatial datasets in various format. They are used for demonstrating spatial operations and map creation using the spatial pacakges (e.g., sf, terra, tmap).
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 2.10)
+RoxygenNote: 7.3.1
