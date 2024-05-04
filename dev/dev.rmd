@@ -35,14 +35,23 @@ hp_boundary <-
 usethis::use_data(hp_boundary, overwrite = TRUE)
 ```
 
+## Nebraska county boundaries
+
+```{r}
+ne_counties <-
+  tigris::counties(state = "NE") %>%
+  dplyr::select(STATEFP, COUNTYFP, NAME) %>%
+  data.table::setnames(names(.), tolower(names(.)))
+
+usethis::use_data(ne_counties, overwrite = TRUE)
+```
+
 ## Railroads in Nebraska
 
 (https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-rails-national-shapefile)
 
 ```{r}
 download.file("http://www2.census.gov/geo/tiger/TIGER2019/RAILS/tl_2019_us_rails.zip", destfile = "data-raw/us_rails.zip")
-
-ne_counties <- tigris::counties(state = "NE")
 
 railroads_ne <-
   sf::st_read("data-raw/us_rails/tl_2019_us_rails.shp") %>%

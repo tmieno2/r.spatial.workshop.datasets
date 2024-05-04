@@ -61,3 +61,18 @@
 #' }
 #' @source <"http://www2.census.gov/geo/tiger/TIGER2019/RAILS/tl_2019_us_rails.zip">
 "railroads_ne"
+
+#' Nebraska county boundary data
+#'
+#' Nebraska county boundary as an sf object
+#'
+#' @format `sf`
+#' An sf with 2 rows and 1 columns:
+#' \describe{
+#'   \item{statefp}{State FIP}
+#'   \item{countyfp}{County FIP}
+#'   \item{name}{County name}
+#'   \item{geometry}{geometry}
+#' }
+#' @source <https://www.nebraskamap.gov/datasets/nebraska::county-boundaries-census/about>
+"ne_counties"
