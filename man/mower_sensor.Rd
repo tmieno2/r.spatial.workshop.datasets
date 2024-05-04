@@ -13,6 +13,9 @@ A data frame with 420 rows and 3 columns:
   \item{ELEV}{Elevation}
 }
 }
+\source{
+privately obtained
+}
 \usage{
 mower_sensor
 }

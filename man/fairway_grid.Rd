@@ -6,11 +6,14 @@
 \title{Fairway plot data}
 \format{
 `sf`
-A data frame with 42 rows and 2 columns:
+An sf with 42 rows and 2 columns:
 \describe{
   \item{grid}{grid ID}
   \item{geometry}{geometry}
 }
+}
+\source{
+privately obtained
 }
 \usage{
 fairway_grid
