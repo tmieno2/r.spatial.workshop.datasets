@@ -1,6 +1,7 @@
 ```{r}
 library(devtools)
 library(dplyr)
+library(sf)
 use_readme_rmd()
 use_mit_license()
 ```
@@ -30,7 +31,8 @@ devtools::document()
 hp_boundary <-
   sf::st_read("data-raw/hp_bound2010.shp") %>%
   dplyr::filter(AQUIFER == "High Plains aquifer") %>%
-  dplyr::select(geometry)
+  dplyr::select(geometry) %>%
+  st_transform(4269)
 
 usethis::use_data(hp_boundary, overwrite = TRUE)
 ```
