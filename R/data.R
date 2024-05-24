@@ -76,3 +76,31 @@
 #' }
 #' @source <https://www.nebraskamap.gov/datasets/nebraska::county-boundaries-census/about>
 "ne_counties"
+
+#' Corn acreage in Iowa
+#'
+#' Corn acreage in Iowa by county in 2018
+#'
+#' @format sf
+#' A data frame with 1,000 rows and 3 columns:
+#' \describe{
+#'   \item{county_code}{County FIPS number}
+#'   \item{year}{year}
+#'   \item{acres}{Corn acres}
+#'   \item{geometry}{geometry}
+#' }
+#' @source USDA NASS 
+"ia_corn_acres"
+
+#' Hydrologic Units
+#'
+#' Hydrologic units that covers Iowa
+#'
+#' @format sf
+#' A data frame with 1,000 rows and 3 columns:
+#' \describe{
+#'   \item{huc_code}{HUC ID}
+#'   \item{geometry}{geometry}
+#' }
+#' @source <"https://www.sciencebase.gov/catalog/item/631405c4d34e36012efa315f">
+"huc_ia"

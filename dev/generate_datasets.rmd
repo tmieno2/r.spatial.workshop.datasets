@@ -1,0 +1,74 @@
+# Preparation
+
+```{r}
+library(devtools)
+library(dplyr)
+library(sf)
+```
+
+# Generate datasets 
+
+## High-Plains aquifer boundary
+
+```{r}
+hp_boundary <-
+  sf::st_read("data-raw/hp_bound2010.shp") %>%
+  dplyr::filter(AQUIFER == "High Plains aquifer") %>%
+  dplyr::select(geometry) %>%
+  st_transform(4269)
+
+usethis::use_data(hp_boundary, overwrite = TRUE)
+```
+
+## Nebraska county boundaries
+
+```{r}
+ne_counties <-
+  tigris::counties(state = "NE") %>%
+  dplyr::select(STATEFP, COUNTYFP, NAME) %>%
+  data.table::setnames(names(.), tolower(names(.)))
+
+usethis::use_data(ne_counties, overwrite = TRUE)
+```
+
+## Railroads in Nebraska
+
+(https://catalog.data.gov/dataset/tiger-line-shapefile-2019-nation-u-s-rails-national-shapefile)
+
+```{r}
+download.file("http://www2.census.gov/geo/tiger/TIGER2019/RAILS/tl_2019_us_rails.zip", destfile = "data-raw/us_rails.zip")
+
+railroads_ne <-
+  sf::st_read("data-raw/us_rails/tl_2019_us_rails.shp") %>%
+  .[ne_counties, ] %>%
+  dplyr::select(LINEARID)
+
+usethis::use_data(railroads_ne, overwrite = TRUE)
+```
+
+## IA corn acreage
+
+```{r}
+ia_corn_acres <- readRDS("data-raw/IA_corn.rds")
+
+usethis::use_data(ia_corn_acres, overwrite = TRUE)
+```
+
+## Hydrologic units
+
+
+
+```{r}
+huc_ia <-
+  st_read("data-raw/huc250k.shp") %>%
+  .[(st_transform(ia_corn_acres, st_crs(.))), ] %>%
+  st_simplify(dTolerance = 100) %>%
+  st_transform(st_crs(ia_corn_acres)) %>%
+  dplyr::select(HUC_CODE)
+
+# ggplot() +
+#   geom_sf(data = huc) +
+#   geom_sf(data = ia_corn_acres)
+
+usethis::use_data(huc_ia, overwrite = TRUE)
+```
