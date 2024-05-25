@@ -6,10 +6,11 @@
 \title{As-applied seed rate}
 \format{
 sf
-A data frame with 1,041 rows and 2 columns:
+A data frame with 1,041 rows and 3 columns:
 \describe{
   \item{seed_rate}{Seed rate in 1000}
   \item{geometry}{geometry}
+  \item{seed_id}{ID}
 }
 }
 \source{

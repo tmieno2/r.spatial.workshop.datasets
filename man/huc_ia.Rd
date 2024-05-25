@@ -6,7 +6,7 @@
 \title{Hydrologic Units}
 \format{
 sf
-A data frame with 1,000 rows and 3 columns:
+A data frame with 29 rows and 2 columns:
 \describe{
   \item{huc_code}{HUC ID}
   \item{geometry}{geometry}

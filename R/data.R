@@ -82,7 +82,7 @@
 #' Corn acreage in Iowa by county in 2018
 #'
 #' @format sf
-#' A data frame with 1,000 rows and 3 columns:
+#' A data frame with 93 rows and 4 columns:
 #' \describe{
 #'   \item{county_code}{County FIPS number}
 #'   \item{year}{year}
@@ -97,7 +97,7 @@
 #' Hydrologic units that covers Iowa
 #'
 #' @format sf
-#' A data frame with 1,000 rows and 3 columns:
+#' A data frame with 29 rows and 2 columns:
 #' \describe{
 #'   \item{huc_code}{HUC ID}
 #'   \item{geometry}{geometry}

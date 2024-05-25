@@ -6,10 +6,11 @@
 \title{Soybean yield}
 \format{
 sf
-A data frame with 1,041 rows and 2 columns:
+A data frame with 1,683 rows and 3 columns:
 \describe{
   \item{yield}{soybean yield (bu/acre)}
   \item{geometry}{geometry}
+   \item{yield_id}{ID}
 }
 }
 \source{
