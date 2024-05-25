@@ -57,7 +57,6 @@ usethis::use_data(ia_corn_acres, overwrite = TRUE)
 ## Hydrologic units
 
 
-
 ```{r}
 huc_ia <-
   st_read("data-raw/huc250k.shp") %>%
