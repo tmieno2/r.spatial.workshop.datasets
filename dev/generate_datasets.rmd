@@ -2,6 +2,7 @@
 
 ```{r}
 library(devtools)
+library(ggplot2)
 library(dplyr)
 library(sf)
 ```
@@ -56,7 +57,6 @@ usethis::use_data(ia_corn_acres, overwrite = TRUE)
 
 ## Hydrologic units
 
-
 ```{r}
 ia_corn_bbox <-
   st_bbox(ia_corn_acres) %>%
@@ -71,3 +71,28 @@ huc_ia <-
 
 usethis::use_data(huc_ia, overwrite = TRUE)
 ```
+
+## Yield and as-applied nitrogen
+
+```{r}
+soy_yield <-
+  st_read("data-raw/yield-simple1.shp") %>%
+  .[seq(1, nrow(.), by = 10), ] %>%
+  dplyr::select("Yld_Vol_Dr") %>%
+  rename(yield = Yld_Vol_Dr)
+
+usethis::use_data(soy_yield, overwrite = TRUE)
+
+as_applied_s_rate <-
+  st_read("data-raw/as-applied-simple1.shp") %>%
+  .[seq(1, nrow(.), by = 10), ] %>%
+  dplyr::select("Rt_Apd_Ct_") %>%
+  rename(seed_rate = Rt_Apd_Ct_)
+
+usethis::use_data(as_applied_s_rate, overwrite = TRUE)
+
+# ggplot() +
+#   geom_sf(data = yield, size = 0.4, color = "red") +
+#   geom_sf(data = as_applied_n_rate, size = 0.4, color = "blue")
+```
+

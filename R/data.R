@@ -104,3 +104,29 @@
 #' }
 #' @source <"https://www.sciencebase.gov/catalog/item/631405c4d34e36012efa315f">
 "huc_ia"
+
+#' As-applied seed rate
+#'
+#' As-applied seed rate in 1000
+#'
+#' @format sf
+#' A data frame with 1,041 rows and 2 columns:
+#' \describe{
+#'   \item{seed_rate}{Seed rate in 1000}
+#'   \item{geometry}{geometry}
+#' }
+#' @source privately obtained
+"as_applied_s_rate"
+
+#' Soybean yield
+#'
+#' Soybean yield (bu/acre)
+#'
+#' @format sf
+#' A data frame with 1,041 rows and 2 columns:
+#' \describe{
+#'   \item{yield}{soybean yield (bu/acre)}
+#'   \item{geometry}{geometry}
+#' }
+#' @source privately obtained
+"soy_yield"
