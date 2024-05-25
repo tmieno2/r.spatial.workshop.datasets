@@ -110,10 +110,11 @@
 #' As-applied seed rate in 1000
 #'
 #' @format sf
-#' A data frame with 1,041 rows and 2 columns:
+#' A data frame with 1,041 rows and 3 columns:
 #' \describe{
 #'   \item{seed_rate}{Seed rate in 1000}
 #'   \item{geometry}{geometry}
+#'   \item{seed_id}{ID}
 #' }
 #' @source privately obtained
 "as_applied_s_rate"
@@ -123,10 +124,11 @@
 #' Soybean yield (bu/acre)
 #'
 #' @format sf
-#' A data frame with 1,041 rows and 2 columns:
+#' A data frame with 1,683 rows and 3 columns:
 #' \describe{
 #'   \item{yield}{soybean yield (bu/acre)}
 #'   \item{geometry}{geometry}
+#'    \item{yield_id}{ID}
 #' }
 #' @source privately obtained
 "soy_yield"

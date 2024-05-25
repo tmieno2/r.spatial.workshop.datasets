@@ -79,7 +79,8 @@ soy_yield <-
   st_read("data-raw/yield-simple1.shp") %>%
   .[seq(1, nrow(.), by = 10), ] %>%
   dplyr::select("Yld_Vol_Dr") %>%
-  rename(yield = Yld_Vol_Dr)
+  rename(yield = Yld_Vol_Dr) %>%
+  dplyr::mutate(yield_id = 1:nrow(.))
 
 usethis::use_data(soy_yield, overwrite = TRUE)
 
@@ -87,7 +88,8 @@ as_applied_s_rate <-
   st_read("data-raw/as-applied-simple1.shp") %>%
   .[seq(1, nrow(.), by = 10), ] %>%
   dplyr::select("Rt_Apd_Ct_") %>%
-  rename(seed_rate = Rt_Apd_Ct_)
+  rename(seed_rate = Rt_Apd_Ct_)  %>%
+  dplyr::mutate(seed_id = 1:nrow(.))
 
 usethis::use_data(as_applied_s_rate, overwrite = TRUE)
 
