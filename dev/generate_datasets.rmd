@@ -83,6 +83,9 @@ soy_yield <-
   dplyr::mutate(yield_id = 1:nrow(.)) %>%
   st_transform_utm()
 
+#--- remove non-ASCII character ---#
+st_crs(soy_yield)$wkt <- gsub("°|º", "", st_crs(soy_yield)$wkt)
+
 usethis::use_data(soy_yield, overwrite = TRUE)
 
 as_applied_s_rate <-
@@ -93,6 +96,9 @@ as_applied_s_rate <-
   dplyr::mutate(seed_id = 1:nrow(.)) %>%
   st_transform_utm()
 
+#--- remove non-ASCII character ---#
+st_crs(as_applied_s_rate)$wkt <- gsub("°|º", "", st_crs(as_applied_s_rate)$wkt)
+
 usethis::use_data(as_applied_s_rate, overwrite = TRUE)
 
 # ggplot() +
@@ -100,3 +106,61 @@ usethis::use_data(as_applied_s_rate, overwrite = TRUE)
 #   geom_sf(data = as_applied_n_rate, size = 0.4, color = "blue")
 ```
 
+# Basic sfg
+
+## Points
+```{r}
+#--- create points ---#
+point_1 <- st_point(c(2, 2))
+point_2 <- st_point(c(1, 1))
+point_3 <- st_point(c(1, 3))
+
+#--- combine the points to make a single  sf of points ---#
+points <- list(point_1, point_2, point_3) %>%
+  st_sfc() %>%
+  st_as_sf() %>%
+  mutate(point_name = c("point 1", "point 2", "point 3"))
+
+usethis::use_data(points, overwrite = TRUE)
+```
+
+## Lines
+
+```{r}
+#--- create lines ---#
+line_1 <- st_linestring(rbind(c(0, 0), c(2.5, 0.5)))
+line_2 <- st_linestring(rbind(c(1.5, 0.5), c(2.5, 2)))
+
+#--- combine the points to make a single  sf of points ---#
+lines <- list(line_1, line_2) %>%
+  st_sfc() %>%
+  st_as_sf() %>%
+  mutate(line_name = c("line 1", "line 2"))
+
+usethis::use_data(lines, overwrite = TRUE)
+```
+
+## Polygons
+
+```{r}
+#--- create polygons ---#
+polygon_1 <- st_polygon(list(
+  rbind(c(0, 0), c(2, 0), c(2, 2), c(0, 2), c(0, 0))
+))
+
+polygon_2 <- st_polygon(list(
+  rbind(c(0.5, 1.5), c(0.5, 3.5), c(2.5, 3.5), c(2.5, 1.5), c(0.5, 1.5))
+))
+
+polygon_3 <- st_polygon(list(
+  rbind(c(0.5, 2.5), c(0.5, 3.2), c(2.3, 3.2), c(2, 2), c(0.5, 2.5))
+))
+
+#--- combine the polygons to make an sf of polygons ---#
+polygons <- list(polygon_1, polygon_2, polygon_3) %>%
+  st_sfc() %>%
+  st_as_sf() %>%
+  mutate(polygon_name = c("polygon 1", "polygon 2", "polygon 3"))
+
+usethis::use_data(polygons, overwrite = TRUE)
+```

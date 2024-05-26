@@ -132,3 +132,42 @@
 #' }
 #' @source privately obtained
 "soy_yield"
+
+#' Points
+#'
+#' Points
+#'
+#' @format sf
+#' An sf with 3 rows and 2 columns:
+#' \describe{
+#'   \item{x}{geometry}
+#'   \item{point_name}{name of the point}
+#' }
+#' @source generated using R
+"points"
+
+#' Lines
+#'
+#' Lines
+#'
+#' @format sf
+#' A data frame with 2 rows and 2 columns:
+#' \describe{
+#'   \item{x}{geometry}
+#'   \item{line_name}{name of the line}
+#' }
+#' @source generated using R
+"lines"
+
+#' Polygons
+#'
+#' Polygons
+#'
+#' @format sf
+#' A data frame with 3 rows and 2 columns:
+#' \describe{
+#'   \item{x}{geometry}
+#'   \item{polygon_name}{name of the polygon}
+#' }
+#' @source generated using R
+"polygons"
