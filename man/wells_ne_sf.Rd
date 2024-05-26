@@ -6,10 +6,11 @@
 \title{Wells in Nebraska as sf}
 \format{
 sf
-An sf with 1,000 rows and 2 columns:
+An sf with 1,000 rows and 3 columns:
 \describe{
   \item{wellid}{Well ID number}
   \item{geometry}{geometry}
+  \item{gw_extracted}{Fake groundwater extraction amount in acre-feet}
 }
 }
 \source{
@@ -19,6 +20,6 @@ An sf with 1,000 rows and 2 columns:
 wells_ne_sf
 }
 \description{
-This is an sf version of wells_ne
+This is an sf version of wells_ne with fake groundwater extraction added.
 }
 \keyword{datasets}

@@ -25,7 +25,8 @@ wells_ne_sf <-
       "latdd"
     ),
     crs = 4269
-  )
+  ) %>%
+  dplyr::mutate(gw_extracted = runif(nrow(.), min = 50, max = 200))
 
 usethis::use_data(wells_ne_sf, overwrite = TRUE)
 ```
