@@ -77,20 +77,19 @@
 #' @source <https://www.nebraskamap.gov/datasets/nebraska::county-boundaries-census/about>
 "ne_counties"
 
-#' Corn acreage in Iowa
+#' Fake nitrogen use by county in Iowa
 #'
-#' Corn acreage in Iowa by county in 2018
+#' Fake nitrogen use by county in Iowa
 #'
 #' @format sf
-#' A data frame with 93 rows and 4 columns:
+#' An sf with 99 rows and 3 columns:
 #' \describe{
-#'   \item{county_code}{County FIPS number}
-#'   \item{year}{year}
-#'   \item{acres}{Corn acres}
+#'   \item{countyfp}{County FIPS number}
 #'   \item{geometry}{geometry}
+#'   \item{nitrogen_rate}{Nitrogen rate (lb/acre)}
 #' }
 #' @source USDA NASS 
-"ia_corn_acres"
+"ia_nitrogen"
 
 #' Hydrologic Units
 #'

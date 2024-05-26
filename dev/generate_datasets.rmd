@@ -3,6 +3,7 @@
 ```{r}
 library(devtools)
 library(ggplot2)
+library(data.table)
 library(dplyr)
 library(sf)
 ```
@@ -47,25 +48,31 @@ railroads_ne <-
 usethis::use_data(railroads_ne, overwrite = TRUE)
 ```
 
-## IA corn acreage
+## IA corn nitrogen
+
+This is a made-up corn nitrogen use by county.
 
 ```{r}
-ia_corn_acres <- readRDS("data-raw/IA_corn.rds")
+ia_nitrogen <-
+  tigris::counties(state = "IA") %>%
+  setnames(names(.), tolower(names(.))) %>%
+  dplyr::select(countyfp) %>%
+  dplyr::mutate(nitrogen_rate := runif(nrow(.), min = 100, max = 300))
 
-usethis::use_data(ia_corn_acres, overwrite = TRUE)
+usethis::use_data(ia_nitrogen, overwrite = TRUE)
 ```
 
 ## Hydrologic units
 
 ```{r}
-ia_corn_bbox <-
-  st_bbox(ia_corn_acres) %>%
+ia_bbox <-
+  st_bbox(ia_nitrogen) %>%
   st_as_sfc()
 
 huc_ia <-
   st_read("data-raw/huc250k.shp") %>%
-  st_transform(st_crs(ia_corn_bbox)) %>%
-  .[ia_corn_bbox, op = st_within] %>%
+  st_transform(st_crs(ia_bbox)) %>%
+  .[ia_bbox, op = st_within] %>%
   st_simplify(dTolerance = 100) %>%
   dplyr::select(HUC_CODE)
 
@@ -92,7 +99,7 @@ as_applied_s_rate <-
   st_read("data-raw/as-applied-simple1.shp") %>%
   .[seq(1, nrow(.), by = 10), ] %>%
   dplyr::select("Rt_Apd_Ct_") %>%
-  rename(seed_rate = Rt_Apd_Ct_)  %>%
+  rename(seed_rate = Rt_Apd_Ct_) %>%
   dplyr::mutate(seed_id = 1:nrow(.)) %>%
   st_transform_utm()
 
