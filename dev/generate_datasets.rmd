@@ -6,9 +6,29 @@ library(ggplot2)
 library(data.table)
 library(dplyr)
 library(sf)
+
+devtools::load_all()
 ```
 
 # Generate datasets 
+
+## Nebraska wells as sf
+
+```{r}
+data(wells_ne)
+
+wells_ne_sf <-
+  sf::st_as_sf(
+    wells_ne,
+    coords = c(
+      "longdd",
+      "latdd"
+    ),
+    crs = 4269
+  )
+
+usethis::use_data(wells_ne_sf, overwrite = TRUE)
+```
 
 ## High-Plains aquifer boundary
 
@@ -53,6 +73,8 @@ usethis::use_data(railroads_ne, overwrite = TRUE)
 This is a made-up corn nitrogen use by county.
 
 ```{r}
+set.seed(893434)
+
 ia_nitrogen <-
   tigris::counties(state = "IA") %>%
   setnames(names(.), tolower(names(.))) %>%

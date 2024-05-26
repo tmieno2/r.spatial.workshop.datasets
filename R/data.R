@@ -12,6 +12,19 @@
 #' @source <https://dnr.nebraska.gov/groundwater>
 "wells_ne"
 
+#' Wells in Nebraska as sf
+#'
+#' This is an sf version of wells_ne
+#'
+#' @format sf
+#' An sf with 1,000 rows and 2 columns:
+#' \describe{
+#'   \item{wellid}{Well ID number}
+#'   \item{geometry}{geometry}
+#' }
+#' @source <https://dnr.nebraska.gov/groundwater>
+"wells_ne_sf"
+
 #' Mower sensor data
 #'
 #' @format `data.frame`
@@ -90,6 +103,7 @@
 #' }
 #' @source USDA NASS 
 "ia_nitrogen"
+
 
 #' Hydrologic Units
 #'
