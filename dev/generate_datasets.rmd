@@ -1,11 +1,13 @@
 # Preparation
 
 ```{r}
-library(devtools)
-library(ggplot2)
-library(data.table)
-library(dplyr)
-library(sf)
+library("devtools")
+library("ggplot2")
+library("terra")
+library("data.table")
+library("dplyr")
+library("sf")
+library("stars")
 
 devtools::load_all()
 ```
@@ -193,4 +195,41 @@ polygons <- list(polygon_1, polygon_2, polygon_3) %>%
   mutate(polygon_name = c("polygon 1", "polygon 2", "polygon 3"))
 
 usethis::use_data(polygons, overwrite = TRUE)
+```
+
+# Raster data
+
+```{r}
+#--- blue ---#
+reflec_blue <-
+  terra::rast("data-raw/Annos_062718_RE_transparent_reflectance_blue.tif") %>%
+  aggregate(fact = 10)
+
+set.names(reflec_blue, "blue")
+
+reflec_blue <- st_as_stars(reflec_blue)
+
+usethis::use_data(reflec_blue, overwrite = TRUE)
+
+#--- red ---#
+reflec_red <-
+  terra::rast("data-raw/Annos_062718_RE_transparent_reflectance_red.tif") %>%
+  aggregate(fact = 10)
+
+set.names(reflec_red, "red")
+
+reflec_red <- st_as_stars(reflec_red)
+
+usethis::use_data(reflec_red, overwrite = TRUE)
+
+#--- green ---#
+reflec_green <-
+  terra::rast("data-raw/Annos_062718_RE_transparent_reflectance_green.tif") %>%
+  aggregate(fact = 10)
+
+set.names(reflec_green, "green")
+
+reflec_green <- st_as_stars(reflec_green)
+
+usethis::use_data(reflec_green, overwrite = TRUE)
 ```

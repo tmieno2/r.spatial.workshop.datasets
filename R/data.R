@@ -185,3 +185,39 @@
 #' }
 #' @source generated using R
 "polygons"
+
+#' Blue reflectance
+#'
+#' Blue reflectance
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' \describe{
+#'   \item{blue}{blue reflectance}
+#' }
+#' @source generated using R
+"reflec_blue"
+
+#' Red reflectance
+#'
+#' Red reflectance
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' \describe{
+#'   \item{red}{red reflectance}
+#' }
+#' @source generated using R
+"reflec_red"
+
+#' Green reflectance
+#'
+#' Green reflectance
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' \describe{
+#'   \item{green}{green reflectance}
+#' }
+#' @source generated using R
+"reflec_green"
