@@ -12,12 +12,12 @@ A stars object with 2 dimensions and 1 attribute:
 }
 }
 \source{
-generated using R
+privately obtained
 }
 \usage{
 reflec_red
 }
 \description{
-Red reflectance
+Red reflectance from drone
 }
 \keyword{datasets}

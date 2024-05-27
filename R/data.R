@@ -188,36 +188,60 @@
 
 #' Blue reflectance
 #'
-#' Blue reflectance
+#' Blue reflectance from drone
 #'
 #' @format stars
 #' A stars object with 2 dimensions and 1 attribute:
 #' \describe{
 #'   \item{blue}{blue reflectance}
 #' }
-#' @source generated using R
+#' @source privately obtained
 "reflec_blue"
 
 #' Red reflectance
 #'
-#' Red reflectance
+#' Red reflectance from drone
 #'
 #' @format stars
 #' A stars object with 2 dimensions and 1 attribute:
 #' \describe{
 #'   \item{red}{red reflectance}
 #' }
-#' @source generated using R
+#' @source privately obtained
 "reflec_red"
 
 #' Green reflectance
 #'
-#' Green reflectance
+#' Green reflectance from drone
 #'
 #' @format stars
 #' A stars object with 2 dimensions and 1 attribute:
 #' \describe{
 #'   \item{green}{green reflectance}
 #' }
-#' @source generated using R
+#' @source privately obtained
 "reflec_green"
+
+#' Near-Infrared Red (NIR)
+#'
+#' Near-Infrared Red from drone
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' \describe{
+#'   \item{NIR}{NIR}
+#' }
+#' @source privately obtained
+"NIR"
+
+#' Red (RED)
+#'
+#' Red from drone
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' \describe{
+#'   \item{RED}{RED}
+#' }
+#' @source privately obtained
+"RED"

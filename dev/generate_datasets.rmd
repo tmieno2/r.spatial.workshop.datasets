@@ -199,6 +199,10 @@ usethis::use_data(polygons, overwrite = TRUE)
 
 # Raster data
 
+`SpatRaster` object cannot be saved as *.rda as it saves a pointer. So, they are converted to `stars` object and saved.
+
+## Satellite image, blue, green, and red
+
 ```{r}
 #--- blue ---#
 reflec_blue <-
@@ -206,6 +210,8 @@ reflec_blue <-
   aggregate(fact = 10)
 
 set.names(reflec_blue, "blue")
+
+terra::writeRaster(reflec_blue, "data-files-for-participants/reflec_blue.tif")
 
 reflec_blue <- st_as_stars(reflec_blue)
 
@@ -218,6 +224,8 @@ reflec_red <-
 
 set.names(reflec_red, "red")
 
+terra::writeRaster(reflec_red, "data-files-for-participants/reflec_red.tif")
+
 reflec_red <- st_as_stars(reflec_red)
 
 usethis::use_data(reflec_red, overwrite = TRUE)
@@ -229,7 +237,35 @@ reflec_green <-
 
 set.names(reflec_green, "green")
 
+terra::writeRaster(reflec_green, "data-files-for-participants/reflec_green.tif")
+
 reflec_green <- st_as_stars(reflec_green)
 
 usethis::use_data(reflec_green, overwrite = TRUE)
+```
+
+## NIR and RED
+
+```{r}
+#--- NIR ---#
+NIR <-
+  terra::rast("data-raw/NIR.tif") %>%
+  aggregate(fact = 10)
+
+set.names(NIR, "NIR")
+
+NIR <- st_as_stars(NIR)
+
+usethis::use_data(NIR, overwrite = TRUE)
+
+#--- RED ---#
+RED <-
+  terra::rast("data-raw/RED.tif") %>%
+  aggregate(fact = 10)
+
+set.names(RED, "RED")
+
+RED <- st_as_stars(RED)
+
+usethis::use_data(RED, overwrite = TRUE)
 ```
