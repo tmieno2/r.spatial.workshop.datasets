@@ -266,3 +266,40 @@
 #' A stars object with 3 dimensions and 1 attribute:
 #' @source privately obtained
 "prism_2012_aug"
+
+#' Treatment blocks
+#'
+#' Treatment blocks
+#'
+#' @format sf
+#' An sf object with 25 rows and 4 columns:
+#' \describe{
+#'   \item{product}{product name}
+#'   \item{target rate}{target nitrogen rate}
+#'   \item{replication}{replication id}
+#'   \item{geometry}{geometry}
+#' }
+#' @source privately obtained
+"treatment_blocks"
+
+#' Corn yield
+#'
+#' Corn yield from yield monitor
+#'
+#' @format sf
+#' An sf object with 3830 rows and 2 columns:
+#' \describe{
+#'   \item{geometry}{geometry}
+#'   \item{yield}{corn yield}
+#' }
+#' @source privately obtained
+"corn_yield"
+
+#' NDRE values
+#'
+#' NDRE values
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' @source privately obtained
+"NDRE"

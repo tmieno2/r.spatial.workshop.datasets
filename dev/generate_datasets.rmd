@@ -2,6 +2,7 @@
 
 ```{r}
 library("devtools")
+library("tidyterra")
 library("ggplot2")
 library("prism")
 library("stringr")
@@ -362,7 +363,6 @@ prism::get_prism_dailys(
 
 ## gridMET
 
-
 ```{r}
 downloader::download(
   url = str_c("http://www.northwestknowledge.net/metdata/data/pr_2018.nc"),
@@ -380,3 +380,52 @@ terra::writeCDF(gm_precip_2018, "data-files-for-participants/gm_precip_2018.nc",
 
 # terra::writeRaster(gm_precip_2018, "data-files-for-participants/gm_precip_2018.nc", overwrite = TRUE)
 ```
+
+# On-farm nitrogen experiment
+
+## Treatment blocks
+
+```{r}
+treatment_blocks <-
+  st_read("data-raw/ZP_TRT_Blocks_Buff.shp") %>%
+  dplyr::select(Product, Tgt_Rate_l, Replicatio) %>%
+  setnames(names(.), c("product", "target_rate", "replication", "geometry"))
+
+usethis::use_data(treatment_blocks, overwrite = TRUE)
+```
+
+## Fake corn yield
+
+```{r}
+corn_yield <-
+  st_read("data-raw/Stevens_Centuro_YLD_shp.shp") %>%
+  #--- transform the CRS so that it is consistent with the raster data ---#
+  st_transform(st_crs(treatment_blocks)) %>%
+  #--- use every 100 observations ---#
+  .[st_as_sfc(st_bbox(treatment_blocks)), ] %>%
+  #--- create fake yield data ---#
+  mutate(yield = runif(n(), min = 50, max = 240))
+
+usethis::use_data(corn_yield, overwrite = TRUE)
+
+# ggplot() +
+#   geom_sf(data = treatment_blocks) +
+#   geom_sf(data = yield)
+```
+
+## NDRE
+
+```{r}
+NDRE <-
+  terra::rast("data-raw/NDRE.tif") %>%
+  aggregate(fact = 20) %>%
+  st_as_stars()
+
+usethis::use_data(NDRE, overwrite = TRUE)
+
+# ggplot() +
+#   geom_sf(data = treatment_blocks) +
+#   geom_sf(data = yield) +
+#   geom_spatraster(data = rast(NDRE))
+```
+
