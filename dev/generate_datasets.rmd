@@ -3,6 +3,7 @@
 ```{r}
 library("devtools")
 library("ggplot2")
+library("prism")
 library("stringr")
 library("terra")
 library("data.table")
@@ -70,6 +71,43 @@ railroads_ne <-
   dplyr::select(LINEARID)
 
 usethis::use_data(railroads_ne, overwrite = TRUE)
+```
+
+## NE corn harvested acres
+
+```{r}
+get_quickstat_data <- function(year, data_item) {
+  desc <-
+    tidyUSDA::allDataItem %>%
+    grep(pattern = data_item, ., value = TRUE) %>%
+    .[!grepl(., pattern = "NET")]
+
+  temp_data <- tidyUSDA::getQuickstat(
+    key = keyring::key_get("usda-nass"),
+    program = "SURVEY",
+    data_item = desc,
+    geographic_level = "COUNTY",
+    year = year,
+    geometry = TRUE
+  ) %>%
+    data.table() %>%
+    .[, .(year, county_code, state_fips_code, short_desc, Value, geometry)]
+
+  return(temp_data)
+}
+
+corn_acres_ne <-
+  lapply(
+    as.character(2020:2023),
+    \(x) get_quickstat_data(x, "CORN, GRAIN - ACRES HARVESTED")
+  ) %>%
+  rbindlist() %>%
+  setnames("Value", "acre") %>%
+  .[, short_desc := NULL] %>%
+  .[, state_fips_code := NULL] %>%
+  st_as_sf()
+
+usethis::use_data(corn_acres_ne, overwrite = TRUE)
 ```
 
 ## IA corn nitrogen
@@ -306,4 +344,36 @@ names(prism_2012_aug) <- c("01-01-2012", "01-02-2012", "01-03-2012", "01-04-2012
 prism_2012_aug <- st_as_stars(prism_2012_aug)
 
 usethis::use_data(prism_2012_aug, overwrite = TRUE)
-```  
+```
+
+```{r}
+options(prism.path = "data-files-for-participants")
+
+prism::get_prism_dailys(
+  type = "ppt",
+  minDate = "2012-08-01",
+  maxDate = "2012-08-01",
+  keepZip = FALSE
+)
+```
+
+## gridMET
+
+
+```{r}
+downloader::download(
+  url = str_c("http://www.northwestknowledge.net/metdata/data/pr_2018.nc"),
+  destfile = "data-raw/pr_2018.nc",
+  mode = "wb"
+)
+
+pr_2018_gm <- terra::rast("data-raw/pr_2018.nc")
+
+#--- first ten days ---#
+gm_precip_2018 <- subset(pr_2018_gm, 1:10)
+
+#--- write as an nc file ---#
+terra::writeCDF(gm_precip_2018, "data-files-for-participants/gm_precip_2018.nc", overwrite = TRUE)
+
+# terra::writeRaster(gm_precip_2018, "data-files-for-participants/gm_precip_2018.nc", overwrite = TRUE)
+```

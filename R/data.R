@@ -91,6 +91,21 @@
 #' @source <https://www.nebraskamap.gov/datasets/nebraska::county-boundaries-census/about>
 "ne_counties"
 
+#' Corn harvested acres in Nebraska
+#'
+#' Corn harvested acres in Nebraska
+#'
+#' @format `sf`
+#' An sf with 6205 rows and 4 columns:
+#' \describe{
+#'   \item{year}{year}
+#'   \item{county_code}{County FIP}
+#'   \item{acre}{harvested corn acres}
+#'   \item{geometry}{geometry}
+#' }
+#' @source <https://www.nass.usda.gov/Quick_Stats/>
+"corn_acres_ne"
+
 #' Fake nitrogen use by county in Iowa
 #'
 #' Fake nitrogen use by county in Iowa
