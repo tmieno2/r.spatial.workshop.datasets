@@ -105,6 +105,7 @@ corn_acres_ne <-
   setnames("Value", "acre") %>%
   .[, short_desc := NULL] %>%
   .[state_fips_code == 31, ] %>%
+  .[county_code != "998", ] %>%
   .[, state_fips_code := NULL] %>%
   st_as_sf() %>%
   st_simplify(dTolerance = 100)
