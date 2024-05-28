@@ -7,9 +7,6 @@
 \format{
 stars
 A stars object with 2 dimensions and 1 attribute:
-\describe{
-  \item{RED}{RED}
-}
 }
 \source{
 privately obtained

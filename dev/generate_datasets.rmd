@@ -3,6 +3,7 @@
 ```{r}
 library("devtools")
 library("ggplot2")
+library("stringr")
 library("terra")
 library("data.table")
 library("dplyr")
@@ -269,3 +270,40 @@ RED <- st_as_stars(RED)
 
 usethis::use_data(RED, overwrite = TRUE)
 ```
+
+## PRISM for NE
+
+```{r}
+options(prism.path = "data-raw")
+
+prism::get_prism_dailys(
+  type = "ppt",
+  minDate = "2012-08-01",
+  maxDate = "2012-08-05",
+  keepZip = FALSE
+)
+
+all_prism_files <-
+  list.dirs("data-raw") %>%
+  .[str_detect(., "PRISM")] %>%
+  lapply(
+    .,
+    \(x) {
+      list.files(x, full.names = TRUE) %>%
+        .[str_detect(., "\\.bil")] %>%
+        .[!str_detect(., "aux")]
+    }
+  ) %>%
+  unlist()
+
+prism_2012_aug <-
+  rast(all_prism_files) %>%
+  terra::crop(ne_counties) %>%
+  terra::mask(ne_counties)
+
+names(prism_2012_aug) <- c("01-01-2012", "01-02-2012", "01-03-2012", "01-04-2012", "01-05-2012")
+
+prism_2012_aug <- st_as_stars(prism_2012_aug)
+
+usethis::use_data(prism_2012_aug, overwrite = TRUE)
+```  

@@ -240,8 +240,14 @@
 #'
 #' @format stars
 #' A stars object with 2 dimensions and 1 attribute:
-#' \describe{
-#'   \item{RED}{RED}
-#' }
 #' @source privately obtained
 "RED"
+
+#' PRISM precipitation data
+#'
+#' PRISM precipitation data from Aug 1 to Aug 5 in 2012
+#'
+#' @format stars
+#' A stars object with 3 dimensions and 1 attribute:
+#' @source privately obtained
+"prism_2012_aug"
