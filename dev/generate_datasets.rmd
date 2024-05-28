@@ -104,8 +104,10 @@ corn_acres_ne <-
   rbindlist() %>%
   setnames("Value", "acre") %>%
   .[, short_desc := NULL] %>%
+  .[state_fips_code == 31, ] %>%
   .[, state_fips_code := NULL] %>%
-  st_as_sf()
+  st_as_sf() %>%
+  st_simplify(dTolerance = 100)
 
 usethis::use_data(corn_acres_ne, overwrite = TRUE)
 ```
