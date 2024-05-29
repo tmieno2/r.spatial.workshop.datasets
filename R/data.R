@@ -267,6 +267,15 @@
 #' @source privately obtained
 "prism_2012_aug"
 
+#' PRISM precipitation data for the contiguous US
+#'
+#' PRISM precipitation data for the contiguous US on 08/01/2012
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' @source privately obtained
+"prism_us"
+
 #' Treatment blocks
 #'
 #' Treatment blocks

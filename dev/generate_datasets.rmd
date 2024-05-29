@@ -350,6 +350,10 @@ prism_2012_aug <- st_as_stars(prism_2012_aug)
 usethis::use_data(prism_2012_aug, overwrite = TRUE)
 ```
 
+## PRISM practice data
+
+Single day PRISM data:
+
 ```{r}
 options(prism.path = "data-files-for-participants")
 
@@ -360,6 +364,15 @@ prism::get_prism_dailys(
   keepZip = FALSE
 )
 ```
+
+## PRISM exercise data 
+
+Single day PRISM data simplified:
+
+```{r}
+
+```
+
 
 ## gridMET
 
