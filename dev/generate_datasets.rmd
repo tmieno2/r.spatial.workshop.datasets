@@ -17,6 +17,29 @@ devtools::load_all()
 
 # Generate datasets 
 
+## fairway grid
+
+```{r}
+fairway_grid <-
+  sf::st_read("data-raw/fwy05_grid_NAD.shp") %>%
+  st_transform(4326)
+
+usethis::use_data(fairway_grid, overwrite = TRUE)
+```
+
+## World
+
+```{r}
+library("rnaturalearth")
+library("rnaturalearthdata")
+
+world <-
+  ne_countries(scale = "medium", returnclass = "sf") %>%
+  dplyr::select(name)
+
+usethis::use_data(world, overwrite = TRUE)
+```
+
 ## Nebraska wells as sf
 
 ```{r}
@@ -293,7 +316,7 @@ usethis::use_data(reflec_green, overwrite = TRUE)
 #--- NIR ---#
 NIR <-
   terra::rast("data-raw/NIR.tif") %>%
-  aggregate(fact = 10)
+  aggregate(fact = 20)
 
 set.names(NIR, "NIR")
 
@@ -304,7 +327,7 @@ usethis::use_data(NIR, overwrite = TRUE)
 #--- RED ---#
 RED <-
   terra::rast("data-raw/RED.tif") %>%
-  aggregate(fact = 10)
+  aggregate(fact = 20)
 
 set.names(RED, "RED")
 
@@ -370,7 +393,13 @@ prism::get_prism_dailys(
 Single day PRISM data simplified:
 
 ```{r}
+prism_us <-
+  terra::rast("data-raw/PRISM_ppt_stable_4kmD2_20120801_bil/PRISM_ppt_stable_4kmD2_20120801_bil.bil") %>%
+  aggregate(fact = 5)
 
+prism_us <- st_as_stars(prism_us)
+
+usethis::use_data(prism_us, overwrite = TRUE)
 ```
 
 
@@ -440,5 +469,6 @@ usethis::use_data(NDRE, overwrite = TRUE)
 #   geom_sf(data = treatment_blocks) +
 #   geom_sf(data = yield) +
 #   geom_spatraster(data = rast(NDRE))
+
 ```
 

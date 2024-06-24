@@ -1,3 +1,16 @@
+#' Country boundary
+#'
+#' Counties boundary as sf 
+#'
+#' @format sf
+#' A data frame with 242 rows and 2 columns:
+#' \describe{
+#'   \item{name}{Country name}
+#'   \item{geometry}{geometry}
+#' }
+#' @source rnaturalearhdata package
+"world"
+
 #' Wells in Nebraska with geographic coordinates
 #'
 #' A subset of wells registered in Nebraska
