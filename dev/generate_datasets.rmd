@@ -373,7 +373,7 @@ prism_2012_aug <- st_as_stars(prism_2012_aug)
 usethis::use_data(prism_2012_aug, overwrite = TRUE)
 ```
 
-## PRISM practice data
+### PRISM practice data
 
 Single day PRISM data:
 
@@ -388,7 +388,7 @@ prism::get_prism_dailys(
 )
 ```
 
-## PRISM exercise data 
+### PRISM exercise data 
 
 Single day PRISM data simplified:
 
@@ -400,6 +400,41 @@ prism_us <-
 prism_us <- st_as_stars(prism_us)
 
 usethis::use_data(prism_us, overwrite = TRUE)
+```
+
+### PRISM splitted to practice terra::merge
+
+```{r}
+options(prism.path = "data-raw")
+
+prism::get_prism_dailys(
+  type = "tmax",
+  minDate = "2012-08-01",
+  maxDate = "2012-08-01",
+  keepZip = FALSE
+)
+
+prism_us <-
+  terra::rast("data-raw/PRISM_tmax_stable_4kmD2_20120801_bil/PRISM_tmax_stable_4kmD2_20120801_bil.bil")
+
+ne_counties_sd <-
+  tigris::counties(state = "NE", cb = TRUE) %>%
+  dplyr::filter(NAME %in% c("Douglas", "Saunders"))
+
+prism_saunders <- terra::crop(prism_us, dplyr::filter(ne_counties_sd, NAME == "Saunders"))
+prism_douglas <- terra::crop(prism_us, dplyr::filter(ne_counties_sd, NAME == "Douglas"))
+
+# ggplot() +
+#   geom_spatraster(data = prism_saunders) +
+#   geom_spatraster(data = prism_douglas)
+
+# merged <- terra::merge(prism_saunders, prism_douglas)
+
+prism_saunders <- st_as_stars(prism_saunders)
+prism_douglas <- st_as_stars(prism_douglas)
+
+usethis::use_data(prism_saunders, overwrite = TRUE)
+usethis::use_data(prism_douglas, overwrite = TRUE)
 ```
 
 

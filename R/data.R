@@ -289,6 +289,24 @@
 #' @source privately obtained
 "prism_us"
 
+#' PRISM maximum temperature data for the Saunders county in NE
+#'
+#' PRISM maximum temperature data for the Saunders county in NE on 08/01/2012
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' @source privately obtained
+"prism_saunders"
+
+#' PRISM maximum temperature data for the Douglas county in NE
+#'
+#' PRISM maximum temperature data for the Douglas county in NE on 08/01/2012
+#'
+#' @format stars
+#' A stars object with 2 dimensions and 1 attribute:
+#' @source privately obtained
+"prism_douglas"
+
 #' Treatment blocks
 #'
 #' Treatment blocks
