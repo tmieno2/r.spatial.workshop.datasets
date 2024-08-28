@@ -437,6 +437,12 @@ usethis::use_data(prism_saunders, overwrite = TRUE)
 usethis::use_data(prism_douglas, overwrite = TRUE)
 ```
 
+```{r}
+values(prism_saunders) <- 90
+merge(prism_douglas, prism_saunders) %>% plot()
+merge(prism_saunders, prism_douglas) %>% plot()
+```
+
 
 ## gridMET
 
@@ -507,3 +513,13 @@ usethis::use_data(NDRE, overwrite = TRUE)
 
 ```
 
+## County yield data
+
+```{r}
+county_yield <-
+  readRDS("data-raw/county_yield.rds") %>%
+  .[, .[, .(corn_yield, soy_yield, year, d0_5_9, d1_5_9, d2_5_9, d3_5_9, d4_5_9, geometry)]] %>%
+  st_as_sf()
+
+usethis::use_data(county_yield, overwrite = TRUE)
+```

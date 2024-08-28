@@ -343,3 +343,23 @@
 #' A stars object with 2 dimensions and 1 attribute:
 #' @source privately obtained
 "NDRE"
+
+#' Corn yield by county
+#'
+#' Corn and soybean yield by county for a few states.
+#'
+#' @format sf
+#' An sf object with 3830 rows and 2 columns:
+#' \describe{
+#'   \item{corn_yield}{corn yield}
+#'   \item{soy_yield}{soybean yield}
+#'   \item{year}{year}
+#'   \item{d0_5_9}{drought intensity indicator: category 0}
+#'   \item{d1_5_9}{drought intensity indicator: category 1}
+#'   \item{d2_5_9}{drought intensity indicator: category 2}
+#'   \item{d3_5_9}{drought intensity indicator: category 3}
+#'   \item{d4_5_9}{drought intensity indicator: category 4}
+#'   \item{geometry}{geometry}
+#' }
+#' @source privately obtained
+"county_yield"
