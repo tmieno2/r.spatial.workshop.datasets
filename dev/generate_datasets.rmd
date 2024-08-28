@@ -518,7 +518,7 @@ usethis::use_data(NDRE, overwrite = TRUE)
 ```{r}
 county_yield <-
   readRDS("data-raw/county_yield.rds") %>%
-  .[, .[, .(corn_yield, soy_yield, year, d0_5_9, d1_5_9, d2_5_9, d3_5_9, d4_5_9, geometry)]] %>%
+  .[, .[, .(corn_yield, soy_yield, year, county_code, state_name, d0_5_9, d1_5_9, d2_5_9, d3_5_9, d4_5_9, geometry)]] %>%
   st_as_sf()
 
 usethis::use_data(county_yield, overwrite = TRUE)
