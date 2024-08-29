@@ -5,8 +5,8 @@
 \alias{county_yield}
 \title{Corn yield by county}
 \format{
-sf
-An sf object with 3830 rows and 2 columns:
+tibble
+A tibble object with 1956 rows and 10 columns:
 \describe{
   \item{corn_yield}{corn yield}
   \item{soy_yield}{soybean yield}
