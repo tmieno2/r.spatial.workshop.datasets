@@ -1,5 +1,5 @@
 ^.*\.Rproj$
-^.DS_Store$
+^\.DS\_Store$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$

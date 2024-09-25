@@ -75,9 +75,11 @@ usethis::use_data(hp_boundary, overwrite = TRUE)
 
 ```{r}
 ne_counties <-
-  tigris::counties(state = "NE") %>%
+  tigris::counties(state = "NE", cb = TRUE, progress_bar = FALSE) %>%
   dplyr::select(STATEFP, COUNTYFP, NAME) %>%
   data.table::setnames(names(.), tolower(names(.)))
+
+sf::st_crs(ne_counties)$wkt <- gsub("°|º", "", sf::st_crs(ne_counties)$wkt)
 
 usethis::use_data(ne_counties, overwrite = TRUE)
 ```
@@ -86,9 +88,11 @@ usethis::use_data(ne_counties, overwrite = TRUE)
 
 ```{r}
 co_counties <-
-  tigris::counties(state = "CO", cb = TRUE) %>%
+  tigris::counties(state = "CO", cb = TRUE, progress_bar = FALSE) %>%
   dplyr::select(STATEFP, COUNTYFP, NAME) %>%
   data.table::setnames(names(.), tolower(names(.)))
+
+sf::st_crs(co_counties)$wkt <- gsub("°|º", "", sf::st_crs(co_counties)$wkt)
 
 usethis::use_data(co_counties, overwrite = TRUE)
 ```
@@ -193,7 +197,7 @@ soy_yield <-
   st_transform_utm()
 
 #--- remove non-ASCII character ---#
-st_crs(soy_yield)$wkt <- gsub("°|º", "", st_crs(soy_yield)$wkt)
+sf::st_crs(soy_yield)$wkt <- gsub("°|º", "", st_crs(soy_yield)$wkt)
 
 usethis::use_data(soy_yield, overwrite = TRUE)
 
@@ -206,7 +210,7 @@ as_applied_s_rate <-
   st_transform_utm()
 
 #--- remove non-ASCII character ---#
-st_crs(as_applied_s_rate)$wkt <- gsub("°|º", "", st_crs(as_applied_s_rate)$wkt)
+sf::st_crs(as_applied_s_rate)$wkt <- gsub("°|º", "", st_crs(as_applied_s_rate)$wkt)
 
 usethis::use_data(as_applied_s_rate, overwrite = TRUE)
 
@@ -288,9 +292,10 @@ reflec_blue <-
 
 set.names(reflec_blue, "blue")
 
-terra::writeRaster(reflec_blue, "data-files-for-participants/reflec_blue.tif")
+# terra::writeRaster(reflec_blue, "data-files-for-participants/reflec_blue.tif")
 
-reflec_blue <- st_as_stars(reflec_blue)
+reflec_blue <- stars::st_as_stars(reflec_blue)
+sf::st_crs(reflec_blue)$wkt <- gsub("°|º", "", st_crs(reflec_blue)$wkt)
 
 usethis::use_data(reflec_blue, overwrite = TRUE)
 
@@ -301,9 +306,10 @@ reflec_red <-
 
 set.names(reflec_red, "red")
 
-terra::writeRaster(reflec_red, "data-files-for-participants/reflec_red.tif")
+# terra::writeRaster(reflec_red, "data-files-for-participants/reflec_red.tif")
 
-reflec_red <- st_as_stars(reflec_red)
+reflec_red <- stars::st_as_stars(reflec_red)
+sf::st_crs(reflec_red)$wkt <- gsub("°|º", "", st_crs(reflec_red)$wkt)
 
 usethis::use_data(reflec_red, overwrite = TRUE)
 
@@ -314,9 +320,10 @@ reflec_green <-
 
 set.names(reflec_green, "green")
 
-terra::writeRaster(reflec_green, "data-files-for-participants/reflec_green.tif")
+# terra::writeRaster(reflec_green, "data-files-for-participants/reflec_green.tif")
 
-reflec_green <- st_as_stars(reflec_green)
+reflec_green <- stars::st_as_stars(reflec_green)
+sf::st_crs(reflec_green)$wkt <- gsub("°|º", "", st_crs(reflec_green)$wkt)
 
 usethis::use_data(reflec_green, overwrite = TRUE)
 ```
@@ -331,7 +338,8 @@ NIR <-
 
 set.names(NIR, "NIR")
 
-NIR <- st_as_stars(NIR)
+NIR <- stars::st_as_stars(NIR)
+sf::st_crs(NIR)$wkt <- gsub("°|º", "", st_crs(NIR)$wkt)
 
 usethis::use_data(NIR, overwrite = TRUE)
 
@@ -342,7 +350,8 @@ RED <-
 
 set.names(RED, "RED")
 
-RED <- st_as_stars(RED)
+RED <- stars::st_as_stars(RED)
+sf::st_crs(RED)$wkt <- gsub("°|º", "", st_crs(RED)$wkt)
 
 usethis::use_data(RED, overwrite = TRUE)
 ```
@@ -379,7 +388,7 @@ prism_2012_aug <-
 
 names(prism_2012_aug) <- c("01-01-2012", "01-02-2012", "01-03-2012", "01-04-2012", "01-05-2012")
 
-prism_2012_aug <- st_as_stars(prism_2012_aug)
+prism_2012_aug <- stars::st_as_stars(prism_2012_aug)
 
 usethis::use_data(prism_2012_aug, overwrite = TRUE)
 ```
@@ -408,7 +417,7 @@ prism_us <-
   terra::rast("data-raw/PRISM_ppt_stable_4kmD2_20120801_bil/PRISM_ppt_stable_4kmD2_20120801_bil.bil") %>%
   aggregate(fact = 5)
 
-prism_us <- st_as_stars(prism_us)
+prism_us <- stars::st_as_stars(prism_us)
 
 usethis::use_data(prism_us, overwrite = TRUE)
 ```
@@ -441,8 +450,8 @@ prism_douglas <- terra::crop(prism_us, dplyr::filter(ne_counties_sd, NAME == "Do
 
 # merged <- terra::merge(prism_saunders, prism_douglas)
 
-prism_saunders <- st_as_stars(prism_saunders)
-prism_douglas <- st_as_stars(prism_douglas)
+prism_saunders <- stars::st_as_stars(prism_saunders)
+prism_douglas <- stars::st_as_stars(prism_douglas)
 
 usethis::use_data(prism_saunders, overwrite = TRUE)
 usethis::use_data(prism_douglas, overwrite = TRUE)
@@ -513,7 +522,7 @@ usethis::use_data(corn_yield, overwrite = TRUE)
 NDRE <-
   terra::rast("data-raw/NDRE.tif") %>%
   aggregate(fact = 20) %>%
-  st_as_stars()
+  stars::st_as_stars()
 
 usethis::use_data(NDRE, overwrite = TRUE)
 
