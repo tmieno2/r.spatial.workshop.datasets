@@ -101,8 +101,23 @@
 #'   \item{name}{County name}
 #'   \item{geometry}{geometry}
 #' }
-#' @source <https://www.nebraskamap.gov/datasets/nebraska::county-boundaries-census/about>
+#' @source <https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2019/TGRSHP2019_TechDoc.pdf>
 "ne_counties"
+
+#' Colorado county boundary data
+#'
+#' Colorado county boundary as an sf object
+#'
+#' @format `sf`
+#' An sf with 2 rows and 1 columns:
+#' \describe{
+#'   \item{statefp}{State FIP}
+#'   \item{countyfp}{County FIP}
+#'   \item{name}{County name}
+#'   \item{geometry}{geometry}
+#' }
+#' @source <https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2019/TGRSHP2019_TechDoc.pdf>
+"co_counties"
 
 #' Corn harvested acres in Nebraska
 #'
