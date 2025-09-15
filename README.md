@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The `r.spatial.workshop.datasets` package is a data pacakge. Its
+The `r.spatial.workshop.datasets` package is a data package. Its
 datasets are mostly used internally in the lecture slides in the
 [R-as-GIS-workshop](https://github.com/tmieno2/R-as-GIS-workshop)
 repository.

@@ -1,7 +1,7 @@
 Package: r.spatial.workshop.datasets
 Type: Package
 Title: Collection of spatial datasets
-Version: 0.1.0
+Version: 1.0
 Author: Taro Mieno
 Maintainer: Taro Mieno <tmieno2@unl.edu>
 Description: This packages provides spatial datasets in various format. They are used for demonstrating spatial operations and map creation using R spatial pacakges (e.g., sf, terra, tmap).
@@ -10,7 +10,7 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5)
 RoxygenNote: 7.3.2
 Imports: 
     sf

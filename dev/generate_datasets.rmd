@@ -359,6 +359,7 @@ usethis::use_data(RED, overwrite = TRUE)
 ## PRISM for NE
 
 ```{r}
+library(lubridate)
 options(prism.path = "data-raw")
 
 prism::get_prism_dailys(
@@ -371,6 +372,7 @@ prism::get_prism_dailys(
 all_prism_files <-
   list.dirs("data-raw") %>%
   .[str_detect(., "PRISM")] %>%
+  .[str_detect(., "ppt")] %>%
   lapply(
     .,
     \(x) {
@@ -386,7 +388,7 @@ prism_2012_aug <-
   terra::crop(ne_counties) %>%
   terra::mask(ne_counties)
 
-names(prism_2012_aug) <- c("01-01-2012", "01-02-2012", "01-03-2012", "01-04-2012", "01-05-2012")
+names(prism_2012_aug) <- seq(ymd("2012-08-01"), ymd("2012-08-05"), by = "day")
 
 prism_2012_aug <- stars::st_as_stars(prism_2012_aug)
 
@@ -545,3 +547,4 @@ county_yield <-
 
 usethis::use_data(county_yield, overwrite = TRUE)
 ```
+
