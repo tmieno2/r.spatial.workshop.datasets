@@ -16,6 +16,13 @@ use_mit_license()
 usethis::use_data_raw()
 ```
 
+# Build GitHub Action for biulding the package
+
+```{r}
+usethis::use_github_action(
+  url = "https://raw.githubusercontent.com/r-wasm/actions/v2/examples/deploy-cran-repo.yml"
+)
+```
 
 # Package dependency
 
